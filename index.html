@@ -3,67 +3,50 @@
     <head>
         <!-- Enter a proper page title here -->
         <title>Memer</title>
-
-        <!-- CSS to include bootstrap -->
-        <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
-        <!-- css to include style.css -->
-        <link rel="stylesheet" href="css/style.css" />
-
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <!-- required meta tags essential for seo and link sharing -->
-
-        <!-- Enter a proper description for the page in the meta description tag -->
-        <meta name="description" content="ENTER_PAGE_DESCRIPTION" />
-
-        <!-- Enter a keywords for the page in tag -->
-        <meta name="Keywords" content="ENTER_KEYWORDS_HERE" />
-
-        <!-- Enter Page title -->
-        <meta property="og:title" content="Memer" />
-
-        <!-- Enter Page URL -->
-        <meta property="og:url" content="ENTER_PAGE_URL" />
-
-        <!-- Enter page description -->
-        <meta property="og:description" content="ENTER_PAGE_DESCRIPTION" />
-
-        <!-- Enter Logo image URL for example : http://cryptonite.finstreet.in/images/cryptonitepost.png -->
-        <meta property="og:image" itemprop="image" content="./icons/logo.png" />
-        <meta property="og:image:secure_url" itemprop="image" content="./icons/logo.png" />
-        <meta property="og:image:width" content="600" />
-        <meta property="og:image:height" content="315" />
-        <meta property="og:type" content="website" />
-
-        <!-- Favicon location for example :  images/cropped-Fin-270x270.jpg -->
-        <link rel="icon" href="./icons/logo.png" />
         <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
             body {
                 display: grid;
                 place-items: center;
                 width: 100vw;
                 height: 100vh;
+                background-color: whitesmoke;
             }
 
             button {
                 color: white;
                 padding: 12px 48px;
-                background-color: black;
+                background: black;
             }
 
             a {
                 padding: 40px;
-                background: whitesmoke;
+                background: green;
                 display: block;
                 text-align: center;
                 margin-top: 80px;
+            }
+
+            #error {
+                color: red;
+                margin-top: 10px;
+                text-align: center;
             }
         </style>
     </head>
 
     <body>
-        <button id="share">Share!</button>
+        <div>
+            <button id="share">Share!</button>
+            <div id="error"></div>
+        </div>
         <script src="js/main.js" defer></script>
     </body>
 </html>
