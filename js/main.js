@@ -25,8 +25,5 @@ function share(url, imageName) {
 
 button.onclick = (e) => {
     e.preventDefault();
-    share(
-        "https://preview.redd.it/d8yptqej6hl71.jpg?width=320&crop=smart&auto=webp&s=582876a7037f7422790ef8a5e3977c8b7f3f392d",
-        "gorilla"
-    );
+    share("https://images.dog.ceo/breeds/weimaraner/n02092339_3979.jpg", "dog");
 };
