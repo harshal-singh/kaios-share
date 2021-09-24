@@ -38,39 +38,32 @@
 
         <!-- Favicon location for example :  images/cropped-Fin-270x270.jpg -->
         <link rel="icon" href="./icons/logo.png" />
+        <style>
+            body {
+                display: grid;
+                place-items: center;
+                width: 100vw;
+                height: 100vh;
+            }
+
+            button {
+                color: white;
+                padding: 12px 48px;
+                background-color: black;
+            }
+
+            a {
+                padding: 40px;
+                background: whitesmoke;
+                display: block;
+                text-align: center;
+                margin-top: 80px;
+            }
+        </style>
     </head>
 
     <body>
-        <main>
-            <div id="popup">
-                <small id="time_box">Please wait for <b id="time">-</b> seconds.</small>
-                <h6 id="popup_msg">Hello</h6>
-            </div>
-            <nav>
-                <p>Memer</p>
-                <p>
-                    <img src="./icons/users.png" alt="user image" width="12" height="12" />
-                    <span id="visitor"></span>
-                </p>
-            </nav>
-            <small id="user_name"></small>
-            <div id="meme_image"></div>
-            <footer>
-                <span><b>←</b> Prev</span>
-                <span>OK - Download</span>
-                <span>Next <b>→</b></span>
-            </footer>
-            <div id="tooltip-overlay">
-                <span id="tooltip">
-                    Click Left Arrow <br />
-                    To view previous meme.
-                </span>
-            </div>
-        </main>
-
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="js/jquery-3.4.1.min.js" defer></script>
+        <button id="share">Share!</button>
         <script src="js/main.js" defer></script>
     </body>
 </html>
