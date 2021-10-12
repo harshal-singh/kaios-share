@@ -85,6 +85,8 @@ function userInfo(token) {
 
 // get memes
 function getMemes(token) {
+    showMsg("Getting memes...");
+
     let check_appearance_order = Number(getLocalStorageItem("check_appearance_order")) || 0;
 
     fetch("https://kaiosapi.quadbtech.com/api/memer/meme_calculate", {
@@ -102,6 +104,8 @@ function getMemes(token) {
             return data.json();
         })
         .then((obj) => {
+            showMsg("Fetched all memes...");
+
             if (obj.reset) {
                 setLocalStorageItem("check_appearance_order", 2);
             } else {
@@ -137,7 +141,7 @@ function getMemes(token) {
                 }
 
                 if (forward == memes.length - 1 || backward == memes.length - 1) {
-                    window.location.reload();
+                    getMemes(token);
                 }
             });
 
@@ -154,7 +158,7 @@ function getMemes(token) {
             });
         })
         .catch((err) => {
-            console.log(err);
+            showMsg(err);
         });
 }
 
@@ -190,33 +194,16 @@ function share(url) {
 
             // if image successfully shared
             sharing.onsuccess = function () {
-                const msg = "Share was successful.";
-
-                $("#popup").css("display", "grid");
-                $("#popup_msg").html(msg);
-
-                setTimeout(() => {
-                    $("#popup").css("display", "none");
-                }, 2500);
+                showMsg("Share was successful.");
             };
 
             // if error in sharing image
             sharing.onerror = function () {
-                $("#popup").css("display", "grid");
-                $("#popup_msg").html("Something went wrong while sharing!");
-
-                setTimeout(() => {
-                    $("#popup").css("display", "none");
-                }, 2500);
+                showMsg("Something went wrong while sharing!");
             };
         })
         .catch((err) => {
-            $("#popup").css("display", "grid");
-            $("#popup_msg").html(`Sharing is not supported by your device!`);
-
-            setTimeout(() => {
-                $("#popup").css("display", "none");
-            }, 2500);
+            showMsg("Sharing is not supported by your device!");
         });
 }
 
@@ -243,6 +230,16 @@ function showInstructions() {
             }
             $("#tooltip").html(text);
         });
+    }, 2500);
+}
+
+// show message
+function showMsg(msg) {
+    $("#popup").css("display", "grid");
+    $("#popup_msg").html(msg);
+
+    setTimeout(() => {
+        $("#popup").css("display", "none");
     }, 2500);
 }
 
