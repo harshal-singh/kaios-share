@@ -245,7 +245,7 @@ function showMsg(msg) {
 
     setTimeout(() => {
         $("#popup").css("display", "none");
-    }, 2500);
+    }, 5000);
 }
 
 // set localStorage

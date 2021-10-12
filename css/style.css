@@ -109,17 +109,6 @@ div {
     background-color: rgba(0, 0, 0, 0.6);
 }
 
-#time_box {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 10px;
-    font-size: 11px;
-    text-align: center;
-    background-color: #ffffff;
-}
-
 #time {
     font-size: 14px;
 }
@@ -127,7 +116,10 @@ div {
 #popup_msg {
     width: 160px;
     height: 160px;
-    margin-top: 40px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     padding: 0 10px;
     border-radius: 5px;
     display: grid;
@@ -135,6 +127,7 @@ div {
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
+
 #no-internet p {
     justify-content: center;
 }
