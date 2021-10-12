@@ -19,6 +19,7 @@ if (!navigator.onLine) {
 }
 
 function register() {
+    showMsg("Registeration...");
     const device = navigator.userAgent;
 
     //  get user ip address
@@ -47,10 +48,12 @@ function register() {
                     userInfo(token);
 
                     showInstructions();
+
+                    showMsg("Register success...");
                 }
             })
             .catch((err) => {
-                console.log(err);
+                showMsg(err);
             });
     });
 }
