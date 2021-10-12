@@ -115,13 +115,12 @@ div {
 
 #popup_msg {
     width: 160px;
-    height: 160px;
+    /* height: 160px; */
     position: fixed;
     top: 57%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 0 10px;
-    padding-top: 28%;
+    padding: 25px 10px;
     border-radius: 5px;
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
