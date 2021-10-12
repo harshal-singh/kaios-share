@@ -1,0 +1,30 @@
+{
+    "version": "1.0.0",
+    "name": "Memer",
+    "description": "Daily funny images of laughter memes.",
+    "type": "web",
+    "launch_path": "/index.html",
+    "icons": {
+        "56": "/icons/56x56.png",
+        "112": "/icons/112x112.png",
+        "128": "/icons/128x128.png"
+    },
+    "theme_color": "#f2c94c",
+    "developer": {
+        "name": "QuadBTech",
+        "url": "https://quadbtech.com"
+    },
+    "type": "web",
+    "fullscreen": "true",
+    "locales": {
+        "en-US": {
+            "name": "Memer",
+            "subtitle": "Daily funny images of laughter memes.",
+            "description": "Memer app gives you daily funny images of laughter memes to enjoy and brighten your day. You can download these images too."
+        }
+    },
+    "default_locale": "en-US",
+    "dependencies": {
+        "ads-sdk": "1.4.1"
+    }
+}
