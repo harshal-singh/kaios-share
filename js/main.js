@@ -53,7 +53,7 @@ function register() {
                 }
             })
             .catch((err) => {
-                showMsg(err);
+                showMsg("reg " + err);
             });
     });
 }

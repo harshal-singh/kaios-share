@@ -117,13 +117,12 @@ div {
     width: 160px;
     height: 160px;
     position: fixed;
-    top: 50%;
+    top: 57%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 0 10px;
+    padding-top: 28%;
     border-radius: 5px;
-    display: grid;
-    place-items: center;
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
