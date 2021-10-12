@@ -41,7 +41,7 @@ function pick() {
     // if image successfully picked
     pickImageActivity.onsuccess = function () {
         error.textContent = "Success Pick!";
-        const imgSrc = this.result.blob;
+        const imgSrc = this.result.blob();
         body.style.backgroundImage = `url("${imgSrc}")`;
     };
 
