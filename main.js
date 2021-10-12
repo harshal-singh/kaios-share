@@ -1,3 +1,4 @@
+const body = document.querySelector("body");
 const button = document.getElementById("share");
 const error = document.getElementById("error");
 const pickimage = document.getElementById("pick-img");
@@ -40,25 +41,19 @@ function pick() {
     // if image successfully picked
     pickImageActivity.onsuccess = function () {
         error.textContent = "Success Pick!";
+        const imgSrc = this.result.blob;
+        body.style.backgroundImage = `url("${imgSrc}")`;
     };
 
     // if error in picking image from gallery and camera
     pickImageActivity.onerror = function () {
-        error.textContent = "Unsuccess Pick!";
+        error.textContent = this.error;
     };
 }
 
 // share image
 function sharing(url) {
-    fetch("https://kaiosapi.quadbtech.com/api/memer/download", {
-        method: "POST",
-        headers: {
-            "Content-type": "application/json; charset=UTF-8",
-        },
-        body: JSON.stringify({
-            urls: url,
-        }),
-    })
+    fetch(url)
         .then((data) => {
             return data.blob();
         })
@@ -75,14 +70,13 @@ function sharing(url) {
             // if image successfully picked
             sharing.onsuccess = function () {
                 error.textContent = "Success share!";
-                const body = document.querySelector("body");
                 const objectURL = URL.createObjectURL(imageBlob);
                 body.style.backgroundImage = `url("${objectURL}")`;
             };
 
             // if error in picking image from gallery and camera
             sharing.onerror = function () {
-                error.textContent = "Unsuccess share!";
+                error.textContent = this.error;
             };
         })
         .catch((err) => {
