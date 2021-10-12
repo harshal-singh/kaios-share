@@ -53,8 +53,8 @@ function sharing() {
     var sharing = new MozActivity({
         name: "share",
         data: {
-            type: "url", // Possibly text/html in future versions,
-            url: "https://github.com/harshal-singh",
+            type: "text/plain",
+            blobs: ["This is a message to share via WhatsApp"],
         },
     });
 
