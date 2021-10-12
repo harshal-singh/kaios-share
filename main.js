@@ -49,30 +49,51 @@ function pick() {
 }
 
 // share image
-function sharing() {
-    var sharing = new MozActivity({
-        name: "share",
-        data: {
-            type: "text/plain",
-            blobs: ["This is a message to share via WhatsApp"],
+function sharing(url) {
+    fetch("https://kaiosapi.quadbtech.com/api/memer/download", {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
         },
-    });
+        body: JSON.stringify({
+            urls: url,
+        }),
+    })
+        .then((data) => {
+            return data.blob();
+        })
+        .then((imageBlob) => {
+            var sharing = new MozActivity({
+                name: "share",
+                data: {
+                    type: "image/*",
+                    number: 1,
+                    blobs: [imageBlob],
+                },
+            });
 
-    // if image successfully picked
-    sharing.onsuccess = function () {
-        error.textContent = "Success share!";
-    };
+            // if image successfully picked
+            sharing.onsuccess = function () {
+                error.textContent = "Success share!";
+                const body = document.querySelector("body");
+                const objectURL = URL.createObjectURL(imageBlob);
+                body.style.backgroundImage = `url("${objectURL}")`;
+            };
 
-    // if error in picking image from gallery and camera
-    sharing.onerror = function () {
-        error.textContent = "Unsuccess share!";
-    };
+            // if error in picking image from gallery and camera
+            sharing.onerror = function () {
+                error.textContent = "Unsuccess share!";
+            };
+        })
+        .catch((err) => {
+            error.textContent = err;
+        });
 }
 
 button.onclick = (e) => {
     e.preventDefault();
     button.style.background = "green";
-    sharing();
+    sharing("https://images.dog.ceo/breeds/bulldog-boston/n02096585_9681.jpg");
 };
 
 pickimage.onclick = (e) => {
