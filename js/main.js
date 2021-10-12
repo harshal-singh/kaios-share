@@ -11,8 +11,10 @@ if (!navigator.onLine) {
 
     if (token) {
         userInfo(token);
+        showMsg("Old user...");
     } else {
         register();
+        showMsg("New user...");
     }
 }
 
