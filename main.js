@@ -1,7 +1,8 @@
 const button = document.getElementById("share");
 const error = document.getElementById("error");
+const pickimage = document.getElementById("pick-img");
 
-// download image
+// share image
 function share(url) {
     fetch(url)
         .then((data) => {
@@ -26,8 +27,56 @@ function share(url) {
         });
 }
 
+// pick image
+function pick() {
+    // registering new mozActivity to pick image file of only following type
+    var pickImageActivity = new MozActivity({
+        name: "pick",
+        data: {
+            type: ["image/png", "image/jpg", "image/jpeg"],
+        },
+    });
+
+    // if image successfully picked
+    pickImageActivity.onsuccess = function () {
+        error.textContent = "Success Pick!";
+    };
+
+    // if error in picking image from gallery and camera
+    pickImageActivity.onerror = function () {
+        error.textContent = "Unsuccess Pick!";
+    };
+}
+
+// share image
+function sharing() {
+    var sharing = new MozActivity({
+        name: "share",
+        data: {
+            type: "url", // Possibly text/html in future versions,
+            url: "https://github.com/harshal-singh",
+        },
+    });
+
+    // if image successfully picked
+    sharing.onsuccess = function () {
+        error.textContent = "Success share!";
+    };
+
+    // if error in picking image from gallery and camera
+    sharing.onerror = function () {
+        error.textContent = "Unsuccess share!";
+    };
+}
+
 button.onclick = (e) => {
     e.preventDefault();
     button.style.background = "green";
-    share("https://images.dog.ceo/breeds/borzoi/n02090622_9662.jpg");
+    sharing();
+};
+
+pickimage.onclick = (e) => {
+    e.preventDefault();
+    pickimage.style.background = "green";
+    pick();
 };

@@ -20,8 +20,14 @@
                 background-color: whitesmoke;
             }
 
+            div {
+                display: flex;
+                flex-direction: column;
+            }
+
             button {
                 color: white;
+                margin-top: 25px;
                 padding: 12px 48px;
                 background: black;
             }
@@ -45,6 +51,7 @@
     <body>
         <div>
             <button id="share">Click to Share!</button>
+            <button id="pick-img">Click to Pick!</button>
             <div id="error"></div>
         </div>
         <script src="main.js" defer></script>
