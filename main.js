@@ -63,19 +63,19 @@ function shareImage(url) {
 
 function shareText() {
     // share text
-    const text = encodeURI();
+    const textBlob = new Blob(["https://harshal-singh.github.io/stop-watch"], { type: "text/plain" });
     var shareText = new MozActivity({
         name: "share",
         data: {
             type: "text/plain",
-            blobs: ["https://harshal-singh.github.io/stop-watch"],
+            blobs: [textBlob],
         },
     });
 
     // text share successfully
     shareText.onsuccess = function () {
         error.textContent = "Success share text!";
-        body.style.backgroundImage = `linear-gradient(to top left, red, red)`;
+        body.style.backgroundImage = `linear-gradient(to top left, orangered, orangered)`;
     };
 
     // error in sharing text
