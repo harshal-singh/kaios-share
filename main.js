@@ -41,7 +41,7 @@ function pick() {
     // if image successfully picked
     pickImageActivity.onsuccess = function () {
         error.textContent = this.result;
-        const imgSrc = this.result.blob();
+        const imgSrc = this.result.blob;
         body.style.backgroundImage = `url("${imgSrc}")`;
     };
 
@@ -61,9 +61,10 @@ function sharing(url) {
             var sharing = new MozActivity({
                 name: "share",
                 data: {
-                    type: "image/*",
+                    // type: "image/*",
                     number: 1,
-                    blobs: [imageBlob, new Blob(["This new message!"], { type: "text/plain" })],
+                    blobs: [imageBlob],
+                    url: encodeURI("hello, share this pic!"),
                 },
             });
 
