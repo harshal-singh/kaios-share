@@ -29,7 +29,7 @@ function share(url) {
 }
 
 // mozilla share image
-function sharing(url) {
+function shareImage(url) {
     fetch(url)
         .then((data) => {
             return data.blob();
@@ -56,40 +56,43 @@ function sharing(url) {
             shareImage.onerror = function () {
                 error.textContent = this.error;
             };
-
-            // share text
-            var shareText = new MozActivity({
-                name: "share",
-                data: {
-                    type: "url",
-                    url: "https://harshal-singh.github.io/stop-watch",
-                },
-            });
-
-            // text share successfully
-            shareText.onsuccess = function () {
-                error.textContent = "Success share text!";
-                body.style.backgroundImage = `linear-gradient(to top left, red, red)`;
-            };
-
-            // error in sharing text
-            shareText.onerror = function () {
-                error.textContent = this.error;
-            };
         })
         .catch((err) => {
             error.textContent = err;
         });
 }
 
+function shareText() {
+    // share text
+    const text = encodeURI("https://harshal-singh.github.io/stop-watch");
+    var shareText = new MozActivity({
+        name: "share",
+        data: {
+            type: "url",
+            url: `whatsapp://send?text=${text}`,
+        },
+    });
+
+    // text share successfully
+    shareText.onsuccess = function () {
+        error.textContent = "Success share text!";
+        body.style.backgroundImage = `linear-gradient(to top left, red, red)`;
+    };
+
+    // error in sharing text
+    shareText.onerror = function () {
+        error.textContent = this.error;
+    };
+}
+
 button.onclick = (e) => {
     e.preventDefault();
     button.style.background = "green";
-    sharing("https://images.dog.ceo/breeds/bulldog-boston/n02096585_9681.jpg");
+    shareImage("https://images.dog.ceo/breeds/bulldog-boston/n02096585_9681.jpg");
 };
 
 pickimage.onclick = (e) => {
     e.preventDefault();
     pickimage.style.background = "green";
-    pick();
+    shareText();
 };
