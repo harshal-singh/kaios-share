@@ -47,7 +47,7 @@ function sharing(url) {
 
             // image share successfully
             shareImage.onsuccess = function () {
-                error.textContent = "Success share!";
+                error.textContent = "Success share image!";
                 const objectURL = URL.createObjectURL(imageBlob);
                 body.style.backgroundImage = `url("${objectURL}")`;
             };
@@ -58,23 +58,22 @@ function sharing(url) {
             };
 
             // share text
-            var shareImage = new MozActivity({
+            var shareText = new MozActivity({
                 name: "share",
                 data: {
                     type: "url",
-                    url: "",
+                    url: "https://harshal-singh.github.io/stop-watch",
                 },
             });
 
-            // image share successfully
-            shareImage.onsuccess = function () {
-                error.textContent = "Success share!";
-                const objectURL = URL.createObjectURL(imageBlob);
-                body.style.backgroundImage = `url("${objectURL}")`;
+            // text share successfully
+            shareText.onsuccess = function () {
+                error.textContent = "Success share text!";
+                body.style.backgroundImage = `linear-gradient(to top left, red, red)`;
             };
 
-            // error in sharing image
-            shareImage.onerror = function () {
+            // error in sharing text
+            shareText.onerror = function () {
                 error.textContent = this.error;
             };
         })
