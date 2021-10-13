@@ -79,8 +79,8 @@ function shareText() {
     };
 
     // error in sharing text
-    shareText.onerror = function () {
-        error.textContent = ...this.error;
+    shareText.onerror = function (err) {
+        error.textContent = this.error + err;
     };
 }
 
