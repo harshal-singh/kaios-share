@@ -63,12 +63,12 @@ function shareImage(url) {
 
 function shareText() {
     // share text
-    const text = encodeURI("https://harshal-singh.github.io/stop-watch");
+    const text = encodeURI();
     var shareText = new MozActivity({
-        name: "view",
+        name: "share",
         data: {
-            type: "url",
-            url: text,
+            type: "text/plain",
+            blobs: ["https://harshal-singh.github.io/stop-watch"],
         },
     });
 
