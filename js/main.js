@@ -23,39 +23,43 @@ function register() {
     const device = navigator.userAgent;
 
     //  get user ip address
-    $.getJSON("https://api.ipify.org?format=json").then((ipData) => {
-        fetch("https://kaiosapi.quadbtech.com/api/memer/register", {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-            },
-            body: JSON.stringify({
-                ip_address: ipData.ip,
-                device: device,
-            }),
+    $.getJSON("https://api.ipify.org?format=json")
+        .then((ipData) => {
+            fetch("https://kaiosapi.quadbtech.com/api/memer/register", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                },
+                body: JSON.stringify({
+                    ip_address: ipData.ip,
+                    device: device,
+                }),
+            })
+                .then((data) => {
+                    return data.json();
+                })
+                .then((obj) => {
+                    if (obj.status == "fail") {
+                        $("#error").fadeIn();
+                        $("#error").html(obj.Error);
+                    } else {
+                        $("#error").fadeOut();
+                        const token = obj["created_data"].token;
+                        setLocalStorageItem("token", token);
+                        userInfo(token);
+
+                        showInstructions();
+
+                        showMsg("Register success...");
+                    }
+                })
+                .catch((err) => {
+                    showMsg("reg " + err);
+                });
         })
-            .then((data) => {
-                return data.json();
-            })
-            .then((obj) => {
-                if (obj.status == "fail") {
-                    $("#error").fadeIn();
-                    $("#error").html(obj.Error);
-                } else {
-                    $("#error").fadeOut();
-                    const token = obj["created_data"].token;
-                    setLocalStorageItem("token", token);
-                    userInfo(token);
-
-                    showInstructions();
-
-                    showMsg("Register success...");
-                }
-            })
-            .catch((err) => {
-                showMsg("reg " + err);
-            });
-    });
+        .catch((err) => {
+            showMsg("ip " + err);
+        });
 }
 
 // get user info
