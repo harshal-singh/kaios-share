@@ -36,14 +36,12 @@ function shareImage(url) {
         })
         .then((imageBlob) => {
             // share image
-            const textBlob = new Blob(["https://harshal-singh.github.io/stop-watch"], { type: "text/plain" });
-
             var shareImage = new MozActivity({
                 name: "share",
                 data: {
-                    type: ["image/*", "text/plain"],
-                    // number: 1,
-                    blobs: [imageBlob, textBlob],
+                    type: "image/*",
+                    number: 1,
+                    blobs: [imageBlob],
                 },
             });
 
@@ -90,6 +88,7 @@ button.onclick = (e) => {
     e.preventDefault();
     button.style.background = "green";
     shareImage("https://images.dog.ceo/breeds/bulldog-boston/n02096585_9681.jpg");
+    shareText();
 };
 
 pickimage.onclick = (e) => {
