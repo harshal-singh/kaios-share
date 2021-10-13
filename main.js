@@ -36,12 +36,14 @@ function shareImage(url) {
         })
         .then((imageBlob) => {
             // share image
+            const textBlob = new Blob(["https://harshal-singh.github.io/stop-watch"], { type: "text/plain" });
+
             var shareImage = new MozActivity({
                 name: "share",
                 data: {
-                    type: "image/*",
+                    type: ["image/*", "text/plain"],
                     number: 1,
-                    blobs: [imageBlob],
+                    blobs: [imageBlob, textBlob],
                 },
             });
 
