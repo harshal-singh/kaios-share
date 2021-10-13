@@ -25,7 +25,7 @@ function register() {
     //  get user ip address
     $.getJSON("https://api.ipify.org?format=json")
         .then((ipData) => {
-            fetch("https://kaiosapi.quadbtech.com/api/memer/register", {
+            fetch("http://167.71.236.86/api/memer/register", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -65,7 +65,7 @@ function register() {
 // get user info
 function userInfo(token) {
     if (token) {
-        fetch(`https://kaiosapi.quadbtech.com/api/memer/user_info?token=${token}`)
+        fetch(`http://167.71.236.86/api/memer/user_info?token=${token}`)
             .then((obj) => {
                 return obj.json();
             })
@@ -98,7 +98,7 @@ function getMemes(token) {
 
     let check_appearance_order = Number(getLocalStorageItem("check_appearance_order")) || 0;
 
-    fetch("https://kaiosapi.quadbtech.com/api/memer/meme_calculate", {
+    fetch("http://167.71.236.86/api/memer/meme_calculate", {
         method: "POST",
         headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -156,7 +156,7 @@ function getMemes(token) {
 
             $.ajax({
                 type: "GET",
-                url: "https://kaiosapi.quadbtech.com/api/memer/total_visitors",
+                url: "http://167.71.236.86/api/memer/total_visitors",
                 dataType: "json",
                 success: (obj) => {
                     $("#visitor").html(obj.visitor);
@@ -179,7 +179,7 @@ function url(memes, i) {
 
 // share image
 function share(url) {
-    fetch("https://kaiosapi.quadbtech.com/api/memer/download", {
+    fetch("http://167.71.236.86/api/memer/download", {
         method: "POST",
         headers: {
             "Content-type": "application/json; charset=UTF-8",
