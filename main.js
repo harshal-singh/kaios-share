@@ -61,7 +61,7 @@ function sharing(url) {
             var sharing = new MozActivity({
                 name: "share",
                 data: {
-                    // type: "image/*",
+                    type: ["image/*", "url"],
                     number: 1,
                     blobs: [imageBlob],
                     url: encodeURI("hello, share this pic!"),
