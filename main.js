@@ -64,7 +64,7 @@ function sharing(url) {
                 name: "share",
                 data: {
                     type: ["image/*", "url"],
-                    // number: 1,
+                    number: 1,
                     blobs: [textBlob],
                 },
             });
