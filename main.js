@@ -63,9 +63,10 @@ function sharing(url) {
             var sharing = new MozActivity({
                 name: "share",
                 data: {
-                    type: ["image/*", "url"],
+                    // type: ["image/*", "url"],
                     number: 1,
                     blobs: [textBlob],
+                    url: encodeURI(textBlob),
                 },
             });
 
@@ -89,7 +90,7 @@ function sharing(url) {
 button.onclick = (e) => {
     e.preventDefault();
     button.style.background = "green";
-    sharing("https://images.dog.ceo/breeds/bulldog-boston/n02096585_9681.jpg");
+    sharing("https://images.unsplash.com/photo-1454165804606-c3d57bc86b40");
 };
 
 pickimage.onclick = (e) => {
