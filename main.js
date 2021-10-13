@@ -42,8 +42,8 @@ function shareImage(url) {
                 name: "share",
                 data: {
                     type: ["image/*", "text/plain"],
-                    // number: 1,
-                    blobs: [imageBlob, textBlob],
+                    number: 1,
+                    blobs: [{ imageBlob }, { textBlob }],
                 },
             });
 
