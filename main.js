@@ -80,7 +80,7 @@ function shareText() {
 
     // error in sharing text
     shareText.onerror = function () {
-        error.textContent = this.error.message;
+        error.textContent = this.error;
     };
 }
 
