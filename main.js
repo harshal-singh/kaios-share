@@ -68,6 +68,7 @@ function shareText() {
         name: "share",
         data: {
             type: "url",
+            number: 1,
             url: text,
         },
     });
