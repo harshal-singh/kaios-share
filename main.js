@@ -32,18 +32,17 @@ function share(url) {
 function shareImage(url) {
     fetch(url)
         .then((data) => {
-            return data.blob();
+            return data;
         })
         .then((imageBlob) => {
-            const textBlob = new Blob(["https://harshal-singh.github.io/stop-watch"], { type: "text/plain" });
-
+            const textBlob = new Blob([imageBlob, "https://harshal-singh.github.io/stop-watch"]);
             // share image
             var shareImage = new MozActivity({
                 name: "share",
                 data: {
                     type: ["image/*", "text/plain"],
                     number: 1,
-                    blobs: [{ imageBlob }, { textBlob }],
+                    blobs: [textBlob],
                 },
             });
 
