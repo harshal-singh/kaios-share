@@ -25,7 +25,7 @@ function register() {
     //  get user ip address
     $.getJSON("https://api.ipify.org?format=json")
         .then((ipData) => {
-            fetch("http://167.71.236.86/api/memer/register", {
+            fetch("https://kaiosapi.quadbtech.com/api/memer/register", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -65,7 +65,7 @@ function register() {
 // get user info
 function userInfo(token) {
     if (token) {
-        fetch(`http://167.71.236.86/api/memer/user_info?token=${token}`)
+        fetch(`https://kaiosapi.quadbtech.com/api/memer/user_info?token=${token}`)
             .then((obj) => {
                 return obj.json();
             })
@@ -83,10 +83,9 @@ function userInfo(token) {
                     // get memes
                     getMemes(token);
                 }
-                showMsg("Got Userinfo...");
             })
             .catch((err) => {
-                showMsg("user-info " + err);
+                console.log(err);
             });
     } else {
         alert("ERROR");
@@ -99,7 +98,7 @@ function getMemes(token) {
 
     let check_appearance_order = Number(getLocalStorageItem("check_appearance_order")) || 0;
 
-    fetch("http://167.71.236.86/api/memer/meme_calculate", {
+    fetch("https://kaiosapi.quadbtech.com/api/memer/meme_calculate", {
         method: "POST",
         headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -157,13 +156,13 @@ function getMemes(token) {
 
             $.ajax({
                 type: "GET",
-                url: "http://167.71.236.86/api/memer/total_visitors",
+                url: "https://kaiosapi.quadbtech.com/api/memer/total_visitors",
                 dataType: "json",
                 success: (obj) => {
                     $("#visitor").html(obj.visitor);
                 },
                 error: (err) => {
-                    showMsg("visitor " + err);
+                    console.log(err);
                 },
             });
         })
@@ -180,7 +179,7 @@ function url(memes, i) {
 
 // share image
 function share(url) {
-    fetch("http://167.71.236.86/api/memer/download", {
+    fetch("https://kaiosapi.quadbtech.com/api/memer/download", {
         method: "POST",
         headers: {
             "Content-type": "application/json; charset=UTF-8",
