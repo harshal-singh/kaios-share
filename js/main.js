@@ -83,9 +83,10 @@ function userInfo(token) {
                     // get memes
                     getMemes(token);
                 }
+                showMsg("Got Userinfo...");
             })
             .catch((err) => {
-                console.log(err);
+                showMsg("user-info " + err);
             });
     } else {
         alert("ERROR");
@@ -162,7 +163,7 @@ function getMemes(token) {
                     $("#visitor").html(obj.visitor);
                 },
                 error: (err) => {
-                    console.log(err);
+                    showMsg("visitor " + err);
                 },
             });
         })
