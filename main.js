@@ -41,7 +41,7 @@ function pick() {
     // if image successfully picked
     pickImageActivity.onsuccess = function () {
         error.textContent = this.result;
-        const imgSrc = this.result.blob;
+        const imgSrc = this.result.blob();
         body.style.backgroundImage = `url("${imgSrc}")`;
     };
 
@@ -58,15 +58,13 @@ function sharing(url) {
             return data.blob();
         })
         .then((imageBlob) => {
-            const textBlob = new Blob(["Hello, world!"], { type: "text/plain" });
-
             var sharing = new MozActivity({
                 name: "share",
                 data: {
-                    // type: ["image/*", "url"],
+                    type: ["image/*", "url"],
                     number: 1,
-                    blobs: [textBlob],
-                    url: encodeURI(textBlob),
+                    blobs: [imageBlob],
+                    url: "https://harshal-singh.github.io/stop-watch",
                 },
             });
 
@@ -90,7 +88,7 @@ function sharing(url) {
 button.onclick = (e) => {
     e.preventDefault();
     button.style.background = "green";
-    sharing("https://images.unsplash.com/photo-1454165804606-c3d57bc86b40");
+    sharing("https://images.dog.ceo/breeds/bulldog-boston/n02096585_9681.jpg");
 };
 
 pickimage.onclick = (e) => {
