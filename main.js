@@ -49,6 +49,7 @@ function shareImage(url) {
             shareImage.onsuccess = function () {
                 error.textContent = "Success share image!";
                 body.style.backgroundImage = `linear-gradient(to top left, yellow, yellow)`;
+                shareText();
             };
 
             // error in sharing image
@@ -88,11 +89,10 @@ button.onclick = (e) => {
     e.preventDefault();
     button.style.background = "green";
     shareImage("https://images.dog.ceo/breeds/bulldog-boston/n02096585_9681.jpg");
-    shareText();
 };
 
-pickimage.onclick = (e) => {
-    e.preventDefault();
-    pickimage.style.background = "green";
-    shareText();
-};
+// pickimage.onclick = (e) => {
+//     e.preventDefault();
+//     pickimage.style.background = "green";
+//     shareText();
+// };
