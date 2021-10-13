@@ -58,13 +58,14 @@ function sharing(url) {
             return data.blob();
         })
         .then((imageBlob) => {
+            const textBlob = new Blob(["Hello, world!"], { type: "text/plain" });
+
             var sharing = new MozActivity({
                 name: "share",
                 data: {
                     type: ["image/*", "url"],
                     number: 1,
-                    blobs: [imageBlob],
-                    url: encodeURI("hello, share this pic!"),
+                    blobs: [imageBlob, textBlob],
                 },
             });
 
