@@ -3,7 +3,7 @@ const button = document.getElementById("share");
 const error = document.getElementById("error");
 const pickimage = document.getElementById("pick-img");
 
-// share image
+// chrome share image
 function share(url) {
     fetch(url)
         .then((data) => {
@@ -28,55 +28,53 @@ function share(url) {
         });
 }
 
-// pick image
-function pick() {
-    // registering new mozActivity to pick image file of only following type
-    var pickImageActivity = new MozActivity({
-        name: "pick",
-        data: {
-            type: ["image/png", "image/jpg", "image/jpeg"],
-        },
-    });
-
-    // if image successfully picked
-    pickImageActivity.onsuccess = function () {
-        error.textContent = this.result;
-        const imgSrc = this.result.blob();
-        body.style.backgroundImage = `url("${imgSrc}")`;
-    };
-
-    // if error in picking image from gallery and camera
-    pickImageActivity.onerror = function () {
-        error.textContent = this.error;
-    };
-}
-
-// share image
+// mozilla share image
 function sharing(url) {
     fetch(url)
         .then((data) => {
             return data.blob();
         })
         .then((imageBlob) => {
-            var sharing = new MozActivity({
+            // share image
+            var shareImage = new MozActivity({
                 name: "share",
                 data: {
-                    type: ["image/*", "url"],
+                    type: "image/*",
                     number: 1,
                     blobs: [imageBlob],
-                    url: "https://harshal-singh.github.io/stop-watch",
                 },
             });
 
-            // if image successfully picked
-            sharing.onsuccess = function () {
+            // image share successfully
+            shareImage.onsuccess = function () {
                 error.textContent = "Success share!";
                 const objectURL = URL.createObjectURL(imageBlob);
                 body.style.backgroundImage = `url("${objectURL}")`;
             };
 
-            // if error in picking image from gallery and camera
-            sharing.onerror = function () {
+            // error in sharing image
+            shareImage.onerror = function () {
+                error.textContent = this.error;
+            };
+
+            // share text
+            var shareImage = new MozActivity({
+                name: "share",
+                data: {
+                    type: "url",
+                    url: "",
+                },
+            });
+
+            // image share successfully
+            shareImage.onsuccess = function () {
+                error.textContent = "Success share!";
+                const objectURL = URL.createObjectURL(imageBlob);
+                body.style.backgroundImage = `url("${objectURL}")`;
+            };
+
+            // error in sharing image
+            shareImage.onerror = function () {
                 error.textContent = this.error;
             };
         })
