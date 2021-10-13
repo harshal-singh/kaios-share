@@ -48,8 +48,7 @@ function shareImage(url) {
             // image share successfully
             shareImage.onsuccess = function () {
                 error.textContent = "Success share image!";
-                const objectURL = URL.createObjectURL(imageBlob);
-                body.style.backgroundImage = `url("${objectURL}")`;
+                body.style.backgroundImage = `linear-gradient(to top left, yellow, yellow)`;
             };
 
             // error in sharing image
