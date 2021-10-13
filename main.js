@@ -35,13 +35,15 @@ function shareImage(url) {
             return data.blob();
         })
         .then((imageBlob) => {
+            const textBlob = new Blob(["https://harshal-singh.github.io/stop-watch"], { type: "text/plain" });
+
             // share image
             var shareImage = new MozActivity({
                 name: "share",
                 data: {
-                    type: "image/*",
+                    // type: "image/*",
                     number: 1,
-                    blobs: [imageBlob],
+                    blobs: [imageBlob, textBlob],
                 },
             });
 
@@ -49,7 +51,6 @@ function shareImage(url) {
             shareImage.onsuccess = function () {
                 error.textContent = "Success share image!";
                 body.style.backgroundImage = `linear-gradient(to top left, yellow, yellow)`;
-                shareText();
             };
 
             // error in sharing image
