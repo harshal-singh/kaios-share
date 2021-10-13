@@ -68,7 +68,7 @@ function shareText() {
         name: "share",
         data: {
             type: "url",
-            url: `whatsapp://send?text=${text}`,
+            url: text,
         },
     });
 
@@ -80,7 +80,7 @@ function shareText() {
 
     // error in sharing text
     shareText.onerror = function () {
-        error.textContent = this.error;
+        error.textContent = ...this.error;
     };
 }
 
