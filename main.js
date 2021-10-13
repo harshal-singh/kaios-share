@@ -41,7 +41,7 @@ function shareImage(url) {
             var shareImage = new MozActivity({
                 name: "share",
                 data: {
-                    // type: "image/*",
+                    type: ["image/*", "text/plain"],
                     number: 1,
                     blobs: [imageBlob, textBlob],
                 },
