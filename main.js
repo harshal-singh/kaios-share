@@ -65,10 +65,9 @@ function shareText() {
     // share text
     const text = encodeURI("https://harshal-singh.github.io/stop-watch");
     var shareText = new MozActivity({
-        name: "share",
+        name: "view",
         data: {
             type: "url",
-            number: 1,
             url: text,
         },
     });
@@ -81,7 +80,7 @@ function shareText() {
 
     // error in sharing text
     shareText.onerror = function (err) {
-        error.textContent = this.error + err;
+        error.textContent = this.error;
     };
 }
 
