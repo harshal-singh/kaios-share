@@ -70,8 +70,8 @@ function shareImage(url) {
                 data: {
                     type: ["image/*", "text/plain"],
                     number: 1,
-                    blobs: [textBlob],
                     blobs: [imageBlob],
+                    blobs: [textBlob],
                 },
             });
 
