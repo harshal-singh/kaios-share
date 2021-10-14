@@ -45,7 +45,7 @@ function shareImage(url) {
             return data.blob();
         })
         .then((imageBlob) => {
-            const textBlob = new Blob([text], { type: "text/plain" });
+            const textBlob = new Blob(["Hii from harshal singh!"], { type: "text/plain" });
 
             // share image
             var shareImage = new MozActivity({
