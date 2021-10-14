@@ -68,9 +68,10 @@ function shareImage(url) {
             var shareImage = new MozActivity({
                 name: "share",
                 data: {
-                    type: "image/*",
+                    type: ["image/*", "text/plain"],
                     number: 1,
-                    blobs: [imageBlob, textBlob],
+                    blobs: [textBlob],
+                    blobs: [imageBlob],
                 },
             });
 
@@ -119,8 +120,8 @@ function shareImageText(url) {
             let shareImageText = new MozActivity({
                 name: "share",
                 data: {
-                    // type: "image/*",
-                    blobs: [imageBlob, textBlob],
+                    type: "image/*",
+                    blobs: [imageBlob],
                 },
             });
 
