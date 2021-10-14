@@ -69,7 +69,6 @@ function shareImage(url) {
                 name: "share",
                 data: {
                     type: ["image/*", "text/plain"],
-                    number: 1,
                     blobs: [imageBlob, textBlob],
                 },
             });
@@ -92,7 +91,7 @@ function shareImage(url) {
 function shareText() {
     // share text
     var shareText = new MozActivity({
-        name: "share",
+        name: "send",
         data: {
             type: "text/plain",
             blobs: [textBlob],
@@ -117,11 +116,10 @@ function shareImageText(url) {
         })
         .then((imageBlob) => {
             let shareImageText = new MozActivity({
-                //Name of activity that set the ringtone
-                name: "share",
+                name: "send",
                 data: {
-                    type: "text/plain",
-                    blobs: [imageBlob],
+                    type: ["image/*", "text/plain"],
+                    blobs: [imageBlob, textBlob],
                 },
             });
 
