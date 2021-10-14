@@ -119,7 +119,7 @@ function shareImageText(url) {
             let shareImageText = new MozActivity({
                 name: "share",
                 data: {
-                    type: "image/*",
+                    // type: "image/*",
                     blobs: [imageBlob, textBlob],
                 },
             });
