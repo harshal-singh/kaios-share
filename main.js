@@ -27,7 +27,7 @@ btnShareImage.onclick = (e) => {
 
 btnShareImageText.onclick = (e) => {
     e.preventDefault();
-    btnShareImageText.style.background = "yellow";
+    btnShareImageText.style.background = "brown";
     shareImageText("https://img.freepik.com/free-vector/abstract-yellow-comic-zoom_1409-923.jpg?size=626&ext=jpg");
 };
 
