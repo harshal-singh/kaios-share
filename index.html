@@ -18,10 +18,7 @@
                 place-items: center;
                 width: 100vw;
                 height: 100vh;
-                background-image: linear-gradient(to top left, whitesmoke, whitesmoke);
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: cover;
+                background-color: gold;
             }
 
             div {
@@ -36,12 +33,7 @@
                 background: black;
             }
 
-            #pick-img {
-                background: burlywood;
-            }
-
             #error {
-                color: red;
                 margin-top: 15px;
                 text-align: center;
             }
@@ -50,8 +42,10 @@
 
     <body>
         <div>
-            <button id="share">Share Image & Text!</button>
-            <button id="pick-img" disabled>Share Text!</button>
+            <button id="share">Share on other devices!</button>
+            <button id="share-image">Share Image on KaiOS!</button>
+            <button id="share-text">Share Text on KaiOS!</button>
+            <button id="share-image-text">Share Image & Text on KaiOS!</button>
             <div id="error"></div>
         </div>
         <script src="main.js" defer></script>

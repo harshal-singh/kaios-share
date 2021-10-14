@@ -1,7 +1,35 @@
 const body = document.querySelector("body");
-const button = document.getElementById("share");
 const error = document.getElementById("error");
-const pickimage = document.getElementById("pick-img");
+const btnShare = document.getElementById("share");
+const btnShareText = document.getElementById("share-text");
+const btnShareImage = document.getElementById("share-image");
+const btnShareImageText = document.getElementById("share-image-text");
+
+const textBlob = new Blob(["https://harshal-singh.github.io/stop-watch"], { type: "text/plain" });
+
+btnShare.onclick = (e) => {
+    e.preventDefault();
+    btnShare.style.background = "red";
+    share("https://image.freepik.com/free-vector/flat-design-red-comic-style-background_23-2148797742.jpg");
+};
+
+btnShareText.onclick = (e) => {
+    e.preventDefault();
+    btnShareText.style.background = "blue";
+    shareText();
+};
+
+btnShareImage.onclick = (e) => {
+    e.preventDefault();
+    btnShareImage.style.background = "green";
+    shareImage("https://image.freepik.com/free-photo/blue-concrete-wall-textures-background_74190-7757.jpg");
+};
+
+btnShareImageText.onclick = (e) => {
+    e.preventDefault();
+    btnShareImageText.style.background = "yellow";
+    shareImageText("https://img.freepik.com/free-vector/abstract-yellow-comic-zoom_1409-923.jpg?size=626&ext=jpg");
+};
 
 // chrome share image
 function share(url) {
@@ -10,9 +38,10 @@ function share(url) {
             return data.blob();
         })
         .then((imgBlob) => {
-            var file = new File([imgBlob], "share-image.jpg", { type: "image/jpeg" });
-            var filesArray = [file];
-            var shareData = { files: filesArray };
+            const image = new File([imgBlob], "share-image.jpg", { type: "image/jpeg" });
+            const text = new File([textBlob], "share-text.txt", { type: "text/plain" });
+            const filesArray = [image, text];
+            const shareData = { files: filesArray };
 
             if (navigator.canShare && navigator.canShare(shareData)) {
                 navigator
@@ -32,24 +61,22 @@ function share(url) {
 function shareImage(url) {
     fetch(url)
         .then((data) => {
-            return data;
+            return data.blob();
         })
         .then((imageBlob) => {
-            const textBlob = new Blob([imageBlob, "https://harshal-singh.github.io/stop-watch"]);
             // share image
             var shareImage = new MozActivity({
                 name: "share",
                 data: {
-                    type: ["image/*", "text/plain"],
-                    number: 1,
-                    blobs: [textBlob],
+                    type: "image/*",
+                    // number: 1,
+                    blobs: [imageBlob],
                 },
             });
 
             // image share successfully
             shareImage.onsuccess = function () {
                 error.textContent = "Success share image!";
-                body.style.backgroundImage = `linear-gradient(to top left, yellow, yellow)`;
             };
 
             // error in sharing image
@@ -64,7 +91,6 @@ function shareImage(url) {
 
 function shareText() {
     // share text
-    const textBlob = new Blob(["https://harshal-singh.github.io/stop-watch"], { type: "text/plain" });
     var shareText = new MozActivity({
         name: "share",
         data: {
@@ -76,23 +102,48 @@ function shareText() {
     // text share successfully
     shareText.onsuccess = function () {
         error.textContent = "Success share text!";
-        body.style.backgroundImage = `linear-gradient(to top left, orangered, orangered)`;
     };
 
     // error in sharing text
-    shareText.onerror = function (err) {
+    shareText.onerror = function () {
         error.textContent = this.error;
     };
 }
 
-button.onclick = (e) => {
-    e.preventDefault();
-    button.style.background = "green";
-    shareImage("https://images.dog.ceo/breeds/bulldog-boston/n02096585_9681.jpg");
-};
+function shareImageText(url) {
+    fetch(url)
+        .then((data) => {
+            return data.blob();
+        })
+        .then((imageBlob) => {
+            let shareImageText = new MozActivity({
+                //Name of activity that set the ringtone
+                name: "share",
+                data: {
+                    //Type of file, in that case acept all audio formats
+                    type: "image/*",
+                    //The blob object of audio file, must be within in array
+                    blobs: [imageBlob],
+                    //The metadata of audio, these are the 3 available properties
+                    metadata: [
+                        {
+                            title: "Umbrella",
+                            artist: "Rihanna",
+                            //The picture must be blob object
+                            picture: imageBlob,
+                        },
+                    ],
+                },
+            });
 
-// pickimage.onclick = (e) => {
-//     e.preventDefault();
-//     pickimage.style.background = "green";
-//     shareText();
-// };
+            //Success handler
+            shareImageText.onsuccess = function () {
+                error.textContent = "Success share image and text!";
+            };
+
+            //Error handler
+            shareImageText.onerror = function (error) {
+                error.textContent = "Success share text!";
+            };
+        });
+}
