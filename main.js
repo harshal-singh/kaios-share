@@ -60,43 +60,43 @@ function share(url) {
 
 // mozilla share image
 function shareImage(url1, url2) {
-    fetch(url1)
-        .then((data) => {
-            return data.blob();
-        })
-        .then((image1Blob) => {
-            const data = {
-                title: "My awesome post!",
-                text: "This post may or may not contain the answer to the universe",
-                url: window.location.href,
-            };
+    // fetch(url1)
+    //     .then((data) => {
+    //         return data.blob();
+    //     })
+    //     .then((image1Blob) => {
+    const data = {
+        title: "My awesome post!",
+        text: "This post may or may not contain the answer to the universe",
+        url: window.location.href,
+    };
 
-            const blobdata = new Blob(data, { type: "text/plain" });
+    const blobdata = new Blob([data], { type: "text/plain" });
 
-            // share image
-            var shareImage = new MozActivity({
-                name: "share",
-                data: {
-                    // type: ["text/plain"],
-                    number: 1,
-                    blobs: [blobdata],
-                },
-            });
+    // share image
+    var shareImage = new MozActivity({
+        name: "share",
+        data: {
+            // type: ["text/plain"],
+            number: 1,
+            blobs: [blobdata],
+        },
+    });
 
-            // image share successfully
-            shareImage.onsuccess = function () {
-                error.textContent = "Success share image!";
-                body.style.backgroundImage = `linear-gradient(to top left, yellow, yellow)`;
-            };
+    // image share successfully
+    shareImage.onsuccess = function () {
+        error.textContent = "Success share image!";
+        body.style.backgroundImage = `linear-gradient(to top left, yellow, yellow)`;
+    };
 
-            // error in sharing image
-            shareImage.onerror = function () {
-                error.textContent = this.error;
-            };
-        })
-        .catch((err) => {
-            error.textContent = err;
-        });
+    // error in sharing image
+    shareImage.onerror = function () {
+        error.textContent = this.error;
+    };
+    // })
+    // .catch((err) => {
+    //     error.textContent = err;
+    // });
 }
 
 function shareText() {
