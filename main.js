@@ -59,8 +59,8 @@ function share(url) {
 }
 
 // mozilla share image
-function shareImage(url1, url2) {
-    const image1Blob = fetch(url1)
+async function shareImage(url1, url2) {
+    const image1Blob = await fetch(url1)
         .then((data) => {
             return data.blob();
         })
@@ -68,7 +68,7 @@ function shareImage(url1, url2) {
             error.textContent = err;
         });
 
-    const image2Blob = fetch(url2)
+    const image2Blob = await fetch(url2)
         .then((data) => {
             return data.blob();
         })
@@ -76,6 +76,8 @@ function shareImage(url1, url2) {
             error.textContent = err;
         });
 
+    console.log(image1Blob);
+    console.log(image2Blob);
     // share image
     var shareImage = new MozActivity({
         name: "share",
