@@ -127,7 +127,7 @@ function shareImageText(url) {
                         data: {
                             //Type of file, in that case acept all audio formats
                             // type: "audio/*",
-                            // number: 1,
+                            number: 1,
                             //The blob object of audio file, must be within in array
                             blobs: [soundBlod],
                             //The metadata of audio, these are the 3 available properties
