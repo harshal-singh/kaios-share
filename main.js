@@ -52,6 +52,8 @@ function shareImage(url) {
                     type: "image/*",
                     number: 1,
                     blobs: [imageBlob],
+                    type: "text/plain",
+                    blobs: [textBlob],
                 },
             });
 
