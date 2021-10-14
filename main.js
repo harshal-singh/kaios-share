@@ -125,10 +125,11 @@ function shareImageText(url) {
                         //Name of activity that set the ringtone
                         name: "share",
                         data: {
-                            //The blob object of audio file, must be within in array
-                            blobs: [soundBlod],
                             //Type of file, in that case acept all audio formats
                             type: "audio/*",
+                            number: 1,
+                            //The blob object of audio file, must be within in array
+                            blobs: [soundBlod],
                             //The metadata of audio, these are the 3 available properties
                             metadata: [
                                 {
