@@ -34,6 +34,11 @@
                 background: black;
             }
 
+            a {
+                margin-top: 20px;
+                text-align: center;
+            }
+
             #error {
                 margin-top: 15px;
                 text-align: center;
@@ -46,11 +51,17 @@
     </head>
 
     <body>
+        <img
+            class="d-none"
+            id="image"
+            src="https://image.freepik.com/free-vector/flat-design-red-comic-style-background_23-2148797742.jpg"
+            alt=""
+        />
         <div>
             <button id="share">Share on other devices!</button>
             <button class="d-none" id="share-image">Share Image on KaiOS!</button>
             <button class="d-none" id="share-text">Share Text on KaiOS!</button>
-            <button id="share-image-text">Share Text & Image on KaiOS!</button>
+            <button class="d-none" id="share-image-text">Share Text & Image on KaiOS!</button>
             <a href="https://wa.me/?text=urlencodedtext">Send message!</a>
             <div id="error"></div>
         </div>

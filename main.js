@@ -14,8 +14,7 @@ btnShare.onclick = (e) => {
     location.href = `whatsapp://send?text=${
         encodeURIComponent(
             "https://image.freepik.com/free-vector/flat-design-red-comic-style-background_23-2148797742.jpg"
-        ) +
-        getBase64Image("https://image.freepik.com/free-vector/flat-design-red-comic-style-background_23-2148797742.jpg")
+        ) + getBase64Image(document.getElementById("image"))
     }`;
     // data:image/jpeg;base64,
     // share("https://image.freepik.com/free-vector/flat-design-red-comic-style-background_23-2148797742.jpg");
