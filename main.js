@@ -1,37 +1,15 @@
-const body = document.querySelector("body");
 const error = document.getElementById("error");
 const btnShare = document.getElementById("share");
-const btnShareText = document.getElementById("share-text");
-const btnShareImage = document.getElementById("share-image");
-const btnShareImageText = document.getElementById("share-image-text");
-const image1 = "https://image.freepik.com/free-photo/blue-concrete-wall-textures-background_74190-7757.jpg";
-const image2 = "https://image.freepik.com/free-vector/flat-design-red-comic-style-background_23-2148797742.jpg";
+
+const image = "https://image.freepik.com/free-photo/blue-concrete-wall-textures-background_74190-7757.jpg";
 
 btnShare.onclick = (e) => {
     e.preventDefault();
-    btnShare.style.background = "red";
-    share();
+    btnShare.style.background = "green";
+    shareImage(image);
 };
 
-btnShareText.onclick = (e) => {
-    e.preventDefault();
-    btnShareText.style.background = "blue";
-    shareText(image1);
-};
-
-btnShareImage.onclick = (e) => {
-    e.preventDefault();
-    btnShareImage.style.background = "green";
-    shareImage(image1, image2);
-};
-
-btnShareImageText.onclick = (e) => {
-    e.preventDefault();
-    btnShareImageText.style.background = "yellow";
-    shareImageText("https://img.freepik.com/free-vector/abstract-yellow-comic-zoom_1409-923.jpg?size=626&ext=jpg");
-};
-
-// chrome share image
+// chrome share image & text
 function share(url) {
     fetch(url)
         .then((data) => {
@@ -39,8 +17,10 @@ function share(url) {
         })
         .then((imgBlob) => {
             const image = new File([imgBlob], "share-image.jpg", { type: "image/jpeg" });
+
             const textBlob = new Blob(["https://harshal-singh.github.io/stop-watch"], { type: "text/plain" });
             const text = new File([textBlob], "share-image.jpg", { type: "image/jpeg" });
+
             const filesArray = [image, text];
             const shareData = { files: filesArray };
 
@@ -59,49 +39,42 @@ function share(url) {
 }
 
 // mozilla share image
-function shareImage(url1, url2) {
-    // fetch(url1)
-    //     .then((data) => {
-    //         return data.blob();
-    //     })
-    //     .then((image1Blob) => {
-    const data = {
-        title: "My awesome post!",
-        text: "This post may or may not contain the answer to the universe",
-        url: window.location.href,
-    };
+function shareImage(url) {
+    fetch(url)
+        .then((data) => {
+            return data.blob();
+        })
+        .then((imageBlob) => {
+            // share image
+            var shareImage = new MozActivity({
+                name: "share",
+                data: {
+                    type: "image/*",
+                    number: 1,
+                    blobs: [imageBlob],
+                },
+            });
 
-    const blobdata = new Blob([data], { type: "text/plain" });
+            // image share successfully
+            shareImage.onsuccess = function () {
+                error.textContent = "Success share image!";
+                body.style.backgroundColor = `royalblue`;
+            };
 
-    // share image
-    var shareImage = new MozActivity({
-        name: "share",
-        data: {
-            type: ["text/plain"],
-            number: 1,
-            blobs: [blobdata],
-        },
-    });
-
-    // image share successfully
-    shareImage.onsuccess = function () {
-        error.textContent = "Success share image!";
-        body.style.backgroundImage = `linear-gradient(to top left, yellow, yellow)`;
-    };
-
-    // error in sharing image
-    shareImage.onerror = function () {
-        error.textContent = this.error;
-    };
-    // })
-    // .catch((err) => {
-    //     error.textContent = err;
-    // });
+            // error in sharing image
+            shareImage.onerror = function () {
+                error.textContent = this.error;
+            };
+        })
+        .catch((err) => {
+            error.textContent = err;
+        });
 }
 
-function shareText() {
+// mozilla share text
+function shareText(text) {
     // share text
-    const textBlob = new Blob(["https://harshal-singh.github.io/stop-watch"], { type: "text/plain" });
+    const textBlob = new Blob([text], { type: "text/plain" });
     var shareText = new MozActivity({
         name: "share",
         data: {
@@ -113,7 +86,7 @@ function shareText() {
     // text share successfully
     shareText.onsuccess = function () {
         error.textContent = "Success share text!";
-        body.style.backgroundImage = `linear-gradient(to top left, orangered, orangered)`;
+        body.style.backgroundColor = `royalblue`;
     };
 
     // error in sharing text
