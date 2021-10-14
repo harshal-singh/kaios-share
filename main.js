@@ -153,12 +153,12 @@ function shareImageWithLink(url) {
             const img = document.getElementById("image");
             img.setAttribute("src", URL.createObjectURL(imageBlob));
 
-            const reader = new FileReader();
-            reader.readAsDataURL(imageBlob);
-            reader.onloadend = function () {
-                base64data = reader.result;
+            // const reader = new FileReader();
+            // reader.readAsDataURL(imageBlob);
+            // reader.onloadend = function () {
+            //     base64data = reader.result;
 
-                location.href = `whatsapp://send?text=${encodeURIComponent(url) + encodeURIComponent(base64data)}`;
-            };
+            location.href = `whatsapp://send?text=${imageBlob + encodeURIComponent(url)}`;
+            // };
         });
 }
