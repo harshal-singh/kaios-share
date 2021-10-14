@@ -10,11 +10,26 @@ const textBlob = new Blob(["https://harshal-singh.github.io/share"], { type: "te
 btnShare.onclick = (e) => {
     e.preventDefault();
     btnShare.style.background = "red";
-    location.href = `whatsapp://send?text=${encodeURIComponent(
-        "https://image.freepik.com/free-vector/flat-design-red-comic-style-background_23-2148797742.jpg"
-    )}`;
+
+    location.href = `whatsapp://send?text=${
+        encodeURIComponent(
+            "https://image.freepik.com/free-vector/flat-design-red-comic-style-background_23-2148797742.jpg"
+        ) +
+        getBase64Image("https://image.freepik.com/free-vector/flat-design-red-comic-style-background_23-2148797742.jpg")
+    }`;
+    // data:image/jpeg;base64,
     // share("https://image.freepik.com/free-vector/flat-design-red-comic-style-background_23-2148797742.jpg");
 };
+
+function getBase64Image(img) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    var dataURL = canvas.toDataURL("image/jpeg");
+    return dataURL;
+}
 
 btnShareText.onclick = (e) => {
     e.preventDefault();
