@@ -40,7 +40,7 @@ function share(url) {
 }
 
 // mozilla share image
-async function shareImage(url) {
+function shareImage(url) {
     fetch(url)
         .then((data) => {
             return data.blob();
