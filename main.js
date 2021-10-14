@@ -1,3 +1,4 @@
+const body = document.querySelector("body");
 const error = document.getElementById("error");
 const btnShare = document.getElementById("share");
 
@@ -39,13 +40,14 @@ function share(url) {
 }
 
 // mozilla share image
-function shareImage(url) {
+async function shareImage(url) {
     fetch(url)
         .then((data) => {
             return data.blob();
         })
         .then((imageBlob) => {
-            const textBlob = new Blob(["Hii from harshal singh!"], { type: "text/plain" });
+            const text = "Hii from harshal singh!";
+            const textBlob = new Blob([text], { type: "text/plain" });
 
             // share image
             var shareImage = new MozActivity({
@@ -53,7 +55,7 @@ function shareImage(url) {
                 data: {
                     type: ["image/*", "text/plain"],
                     number: 1,
-                    blobs: [imageBlob + textBlob],
+                    blobs: [[imageBlob], [textBlob]],
                 },
             });
 
