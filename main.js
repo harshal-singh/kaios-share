@@ -120,8 +120,8 @@ function shareImageText(url) {
                 //Name of activity that set the ringtone
                 name: "share",
                 data: {
-                    type: "text/html",
-                    html_text: `<img src="${URL.createObjectURL(imageBlob)}" alt="image">`,
+                    type: "text/plain",
+                    blobs: [imageBlob],
                 },
             });
 
