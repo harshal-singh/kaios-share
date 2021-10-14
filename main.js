@@ -5,7 +5,7 @@ const btnShareText = document.getElementById("share-text");
 const btnShareImage = document.getElementById("share-image");
 const btnShareImageText = document.getElementById("share-image-text");
 
-const textBlob = new Blob(["https://harshal-singh.github.io/stop-watch"], { type: "text/plain" });
+const textBlob = new Blob(["https://harshal-singh.github.io/share"], { type: "text/plain" });
 
 btnShare.onclick = (e) => {
     e.preventDefault();
