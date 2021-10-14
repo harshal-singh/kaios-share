@@ -59,45 +59,45 @@ function share(url) {
 }
 
 // mozilla share image
-async function shareImage(url1, url2) {
-    const image1Blob = await fetch(url1)
+function shareImage(url1, url2) {
+    fetch(url1)
         .then((data) => {
             return data.blob();
+        })
+        .then((image1Blob) => {
+            fetch(url2)
+                .then((data) => {
+                    return data.blob();
+                })
+                .then((image2Blob) => {
+                    // share image
+                    var shareImage = new MozActivity({
+                        name: "share",
+                        data: {
+                            type: ["image/*"],
+                            number: 1,
+                            blobs: [image1Blob, image2Blob],
+                        },
+                    });
+
+                    // image share successfully
+                    shareImage.onsuccess = function () {
+                        error.textContent = "Success share image!";
+                        body.style.backgroundImage = `linear-gradient(to top left, yellow, yellow)`;
+                    };
+
+                    // error in sharing image
+                    shareImage.onerror = function () {
+                        error.textContent = this.error;
+                    };
+                })
+                .catch((err) => {
+                    error.textContent = err;
+                });
         })
         .catch((err) => {
             error.textContent = err;
         });
-
-    const image2Blob = await fetch(url2)
-        .then((data) => {
-            return data.blob();
-        })
-        .catch((err) => {
-            error.textContent = err;
-        });
-
-    console.log(image1Blob);
-    console.log(image2Blob);
-    // share image
-    var shareImage = new MozActivity({
-        name: "share",
-        data: {
-            type: ["image/*"],
-            number: 1,
-            blobs: [image1Blob, image2Blob],
-        },
-    });
-
-    // image share successfully
-    shareImage.onsuccess = function () {
-        error.textContent = "Success share image!";
-        body.style.backgroundImage = `linear-gradient(to top left, yellow, yellow)`;
-    };
-
-    // error in sharing image
-    shareImage.onerror = function () {
-        error.textContent = this.error;
-    };
 }
 
 function shareText() {
