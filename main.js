@@ -11,24 +11,11 @@ btnShare.onclick = (e) => {
     e.preventDefault();
     btnShare.style.background = "red";
 
-    location.href = `whatsapp://send?text=${
-        encodeURIComponent(
-            "https://image.freepik.com/free-vector/flat-design-red-comic-style-background_23-2148797742.jpg"
-        ) + getBase64Image(document.getElementById("image"))
-    }`;
-    // data:image/jpeg;base64,
     // share("https://image.freepik.com/free-vector/flat-design-red-comic-style-background_23-2148797742.jpg");
+    shareImageWithLink(
+        "https://image.freepik.com/free-vector/flat-design-red-comic-style-background_23-2148797742.jpg"
+    );
 };
-
-function getBase64Image(img) {
-    var canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
-    var ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
-    var dataURL = canvas.toDataURL("image/jpeg");
-    return dataURL;
-}
 
 btnShareText.onclick = (e) => {
     e.preventDefault();
@@ -154,5 +141,24 @@ function shareImageText(url) {
         })
         .catch((err) => {
             error.textContent = "Image: " + err;
+        });
+}
+
+function shareImageWithLink(url) {
+    fetch(url)
+        .then((data) => {
+            return data.blob();
+        })
+        .then((imageBlob) => {
+            const img = document.getElementById("image");
+            img.setAttribute("src", URL.createObjectURL(imageBlob));
+
+            const reader = new FileReader();
+            reader.readAsDataURL(imageBlob);
+            reader.onloadend = function () {
+                base64data = reader.result;
+
+                location.href = `whatsapp://send?text=${encodeURIComponent(url) + encodeURIComponent(base64data)}`;
+            };
         });
 }
