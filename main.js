@@ -45,6 +45,8 @@ function shareImage(url) {
             return data.blob();
         })
         .then((imageBlob) => {
+            const textBlob = new Blob([text], { type: "text/plain" });
+
             // share image
             var shareImage = new MozActivity({
                 name: "share",
