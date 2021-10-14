@@ -77,7 +77,7 @@ function shareImage(url1, url2) {
     var shareImage = new MozActivity({
         name: "share",
         data: {
-            // type: ["text/plain"],
+            type: ["text/plain"],
             number: 1,
             blobs: [blobdata],
         },
