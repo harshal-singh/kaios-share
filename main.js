@@ -150,15 +150,6 @@ function shareImageWithLink(url) {
             return data.blob();
         })
         .then((imageBlob) => {
-            const img = document.getElementById("image");
-            img.setAttribute("src", URL.createObjectURL(imageBlob));
-
-            // const reader = new FileReader();
-            // reader.readAsDataURL(imageBlob);
-            // reader.onloadend = function () {
-            //     base64data = reader.result;
-
             location.href = `whatsapp://send?text=${encodeURIComponent(imageBlob) + encodeURIComponent(url)}`;
-            // };
         });
 }
