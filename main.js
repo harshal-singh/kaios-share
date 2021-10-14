@@ -158,7 +158,7 @@ function shareImageWithLink(url) {
             // reader.onloadend = function () {
             //     base64data = reader.result;
 
-            location.href = `whatsapp://send?text=${imageBlob + encodeURIComponent(url)}`;
+            location.href = `whatsapp://send?text=${encodeURIComponent(imageBlob) + encodeURIComponent(url)}`;
             // };
         });
 }
