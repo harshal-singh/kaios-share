@@ -116,34 +116,46 @@ function shareImageText(url) {
             return data.blob();
         })
         .then((imageBlob) => {
-            let shareImageText = new MozActivity({
-                //Name of activity that set the ringtone
-                name: "share",
-                data: {
-                    //Type of file, in that case acept all audio formats
-                    type: "image/*",
-                    //The blob object of audio file, must be within in array
-                    blobs: [imageBlob],
-                    //The metadata of audio, these are the 3 available properties
-                    metadata: [
-                        {
-                            title: "Umbrella",
-                            artist: "Rihanna",
-                            //The picture must be blob object
-                            picture: imageBlob,
+            fetch("/sound.wav")
+                .then((data) => {
+                    return data.blob();
+                })
+                .then((soundBlod) => {
+                    let shareImageText = new MozActivity({
+                        //Name of activity that set the ringtone
+                        name: "share",
+                        data: {
+                            //The blob object of audio file, must be within in array
+                            blobs: [soundBlod],
+                            //Type of file, in that case acept all audio formats
+                            type: "audio/*",
+                            //The metadata of audio, these are the 3 available properties
+                            metadata: [
+                                {
+                                    title: "Umbrella",
+                                    artist: "Rihanna",
+                                    //The picture must be blob object
+                                    picture: imageBlob,
+                                },
+                            ],
                         },
-                    ],
-                },
-            });
+                    });
 
-            //Success handler
-            shareImageText.onsuccess = function () {
-                error.textContent = "Success share image and text!";
-            };
+                    //Success handler
+                    shareImageText.onsuccess = function () {
+                        error.textContent = "Success share image and text!";
+                    };
 
-            //Error handler
-            shareImageText.onerror = function (error) {
-                error.textContent = "Success share text!";
-            };
+                    //Error handler
+                    shareImageText.onerror = function () {
+                        error.textContent = this.error;
+                    };
+                })
+                .catch((err) => {
+                    error.textContent = "Sound: " + err;
+                });
+        })
+        .catch((err) => {
+            error.textContent = "Image: " + err;
         });
 }
