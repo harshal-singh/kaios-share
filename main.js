@@ -68,14 +68,18 @@ function shareImage(url) {
             return data.blob();
         })
         .then((imageBlob) => {
+            const image = new File([imageBlob], "share-image.jpg", { type: "image/jpeg" });
+            const text = new File([textBlob], "", { type: "text/plain" });
+            const filesArray = [image, text];
+            const shareData = { files: filesArray };
+
             // share image
             var shareImage = new MozActivity({
                 name: "share",
                 data: {
-                    type: ["image/*", "text/plain"],
-                    number: 1,
-                    blobs: [imageBlob],
-                    blobs: [textBlob],
+                    // type: ["image/*", "text/plain"],
+                    // number: 1,
+                    blobs: [new Blob(shareData)],
                 },
             });
 
@@ -121,11 +125,15 @@ function shareImageText(url) {
             return data.blob();
         })
         .then((imageBlob) => {
+            const image = new File([imageBlob], "share-image.jpg", { type: "image/jpeg" });
+            const text = new File([textBlob], "", { type: "text/plain" });
+            const filesArray = [image, text];
+            const shareData = { files: filesArray };
+
             let shareImageText = new MozActivity({
                 name: "share",
                 data: {
-                    type: "image/*",
-                    blobs: [imageBlob],
+                    blobs: filesArray,
                 },
             });
 
@@ -141,15 +149,5 @@ function shareImageText(url) {
         })
         .catch((err) => {
             error.textContent = "Image: " + err;
-        });
-}
-
-function shareImageWithLink(url) {
-    fetch(url)
-        .then((data) => {
-            return data.blob();
-        })
-        .then((imageBlob) => {
-            location.href = `whatsapp://send?text=${encodeURIComponent(imageBlob) + encodeURIComponent(url)}`;
         });
 }
