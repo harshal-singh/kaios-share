@@ -2,51 +2,30 @@
 <html lang="en">
     <head>
         <!-- Enter a proper page title here -->
-        <title>Share</title>
+        <title>DC Marvel Comics - Batman & Spiderman</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta content="width=device-width, initial-scale=1" name="viewport" />
-
-        <style>
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-
-            body {
-                display: grid;
-                place-items: center;
-                width: 100vw;
-                height: 100vh;
-                background-color: gainsboro;
-            }
-
-            div {
-                display: flex;
-                flex-direction: column;
-            }
-
-            button {
-                color: white;
-                margin-top: 40px;
-                padding: 12px 48px;
-                background: black;
-                border: 4px solid brown;
-            }
-
-            #error {
-                margin-top: 15px;
-                text-align: center;
-            }
-        </style>
+        <link rel="stylesheet" href="./style.css" />
     </head>
 
     <body>
-        <div>
-            <button id="share">Share on KaiOS devices!</button>
-            <div id="error"></div>
-        </div>
-        <script src="main.js" defer></script>
+        <!-- <iframe src="./DC Marvel Comics - Batman & Spiderman - PDF Room.pdf" frameborder="0"></iframe> -->
+        <!-- <object
+            data="./DC Marvel Comics - Batman & Spiderman - PDF Room.pdf"
+            type="application/pdf"
+            width="100%"
+            height="100%"
+        ></object> -->
+
+        <embed
+            type="application/pdf"
+            src="./DC Marvel Comics - Batman & Spiderman - PDF Room.pdf#view=fitH&toolbar=0&scrollbar=0"
+            width="100%"
+            height="100%"
+            alt="comic pdf"
+        />
+
+        <script src="./main.js" defer></script>
     </body>
 </html>
