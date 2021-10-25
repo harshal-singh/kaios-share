@@ -107,5 +107,3 @@ function showAppUI() {
     getComicsByType("new");
     getComicsByType("top");
 }
-
-window.onload = hideLoader();
