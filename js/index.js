@@ -106,4 +106,5 @@ let notFocus = searchInput.blur() ? true : false;
 function showAppUI() {
     getComicsByType("new");
     getComicsByType("top");
+    hideLoader();
 }
