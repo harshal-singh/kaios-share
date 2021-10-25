@@ -174,7 +174,7 @@ function loadPageImage(id, datasetURL) {
 
 // show message
 function showMsg(message, alert) {
-    const audio = new Audio("../sounds/notification.mp3");
+    const audio = new Audio("sounds/notification.mp3");
 
     const msg = document.getElementById("msg");
     const msgType = document.getElementById("msg-type");
