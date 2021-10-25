@@ -5,8 +5,8 @@ let categoryCalled = false;
 // remove after CROS issue get resolve.
 // const placeholderTestImage = "https://images.dog.ceo/breeds/cockapoo/george-bow-tie.jpeg";
 
-const placeholderImage = "/images/90x140.png";
-const placeholderPageImage = "/images/214x333.png";
+const placeholderImage = "images/90x140.png";
+const placeholderPageImage = "images/214x333.png";
 
 // current path
 const path = location.pathname;
@@ -110,7 +110,7 @@ function getComicsByType(comic_type) {
                 comics.forEach((comic) => {
                     comicHTML += `<a href="comic.html?comic_id=${
                         comic.comic_id
-                    }" class="card"><img class="image" src="${placeholderImage}" alt="Spider-Man" data-src="${
+                    }" class="card"><img class="image" src="${placeholderImage}" alt="comic image" data-src="${
                         comic.title_img.replace("https", "http") /* placeholderTestImage*/
                     }" /><h2 class="title">${comic.comic_title}</h2></a>`;
                 });

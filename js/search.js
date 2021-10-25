@@ -14,9 +14,9 @@ if (keyword == "all") {
                 comics.forEach((comic) => {
                     comicHTML += `<a href="comic.html?comic_id=${
                         comic.comic_id
-                    }" class="card"><img class="image" src="${placeholderImage}" alt="Spider-Man" data-src="${
+                    }" class="card"><img class="image" src="${placeholderImage}" alt="comic image" data-src="${
                         comic.title_img.replace("https", "http") /* placeholderTestImage*/
-                    }" alt="Spider-Man" /><h2 class="title">${comic.comic_title}</h2></a>`;
+                    }"/><h2 class="title">${comic.comic_title}</h2></a>`;
                 });
                 document.getElementById("search_result").innerHTML = comicHTML;
             } else if (!obj.success) {
@@ -44,9 +44,9 @@ if (keyword == "all") {
                 comics.forEach((comic) => {
                     comicHTML += `<a href="comic.html?comic_id=${
                         comic.comic_id
-                    }" class="card"><img class="image" src="${placeholderImage}" alt="Spider-Man" data-src="${
+                    }" class="card"><img class="image" src="${placeholderImage}" alt="comic image" data-src="${
                         comic.title_img.replace("https", "http") /* placeholderTestImage*/
-                    }" alt="Spider-Man" /><h2 class="title">${comic.comic_title}</h2></a>`;
+                    }" /><h2 class="title">${comic.comic_title}</h2></a>`;
                 });
                 document.getElementById("search_result").innerHTML = comicHTML;
             } else if (!obj.success) {
