@@ -414,3 +414,7 @@ footer {
     padding-top: 12px;
     border-top: 1px solid #efefef;
 }
+
+#close-text {
+    color: #a5a5a5;
+}

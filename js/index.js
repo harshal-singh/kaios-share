@@ -45,7 +45,7 @@ function register(ip) {
                 const msg = obj["Error"]["errors"][0].message;
                 showMsg("REGISTRATION \n\n" + msg, true);
             } else {
-                showMsg("REGISTRATION \n\n Problem with api", true);
+                showMsg("REGISTRATION \n\n Problem with api", false);
             }
         })
         .catch((err) => {
@@ -66,7 +66,7 @@ function userInfo(token) {
                 const msg = obj["Error"]["errors"][0].message;
                 showMsg("GET USERINFO \n\n" + msg, true);
             } else {
-                showMsg("GET USERINFO \n\n Problem with api", true);
+                showMsg("GET USERINFO \n\n Problem with api", false);
             }
         })
         .catch((err) => {
@@ -90,7 +90,7 @@ function getCategory() {
             } else if (!obj.success) {
                 showMsg("GET CATEGORY \n\n" + obj.error, true);
             } else {
-                showMsg("GET CATEGORY \n\n Problem with api", true);
+                showMsg("GET CATEGORY \n\n Problem with api", false);
             }
         })
         .catch((err) => {

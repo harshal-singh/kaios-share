@@ -3,10 +3,10 @@
 let categoryCalled = false;
 
 // remove after CROS issue get resolve.
-const placeholderTestImage = "https://images.dog.ceo/breeds/cockapoo/george-bow-tie.jpeg";
+// const placeholderTestImage = "https://images.dog.ceo/breeds/cockapoo/george-bow-tie.jpeg";
 
-const placeholderImage = "./images/90x140.png";
-const placeholderPageImage = "./images/214x333.png";
+const placeholderImage = "/images/90x140.png";
+const placeholderPageImage = "/images/214x333.png";
 
 // current path
 const path = location.pathname;
@@ -78,7 +78,7 @@ function searchComic(keyword) {
             } else if (!obj.success) {
                 showMsg("SEARCH COMIC \n\n" + obj.error, true);
             } else {
-                showMsg("SEARCH COMIC \n\n Problem with api", true);
+                showMsg("SEARCH COMIC \n\n Problem with api", false);
             }
         })
         .catch((err) => {
@@ -111,14 +111,14 @@ function getComicsByType(comic_type) {
                     comicHTML += `<a href="comic.html?comic_id=${
                         comic.comic_id
                     }" class="card"><img class="image" src="${placeholderImage}" alt="Spider-Man" data-src="${
-                        /* comic.title_img.replace("https", "http")*/ placeholderTestImage
+                        comic.title_img.replace("https", "http") /* placeholderTestImage*/
                     }" /><h2 class="title">${comic.comic_title}</h2></a>`;
                 });
                 document.getElementById(type).innerHTML = comicHTML;
             } else if (!obj.success) {
                 showMsg(`GET COMICS BY TYPE: ${type} \n\n` + obj.error, true);
             } else {
-                showMsg(`GET COMICS BY TYPE: ${type} \n\n` + "Problem with api", true);
+                showMsg(`GET COMICS BY TYPE: ${type} \n\n` + "Problem with api", false);
             }
         })
         .then(() => {
@@ -152,7 +152,7 @@ function loadImages() {
                 });
         });
     } else {
-        showMsg("Issue while loading images!", true);
+        console.error("Issue while loading images!");
     }
 }
 
@@ -174,13 +174,13 @@ function loadPageImage(id, datasetURL) {
 
 // show message
 function showMsg(message, alert) {
-    const audio = new Audio("./sounds/notification.mp3");
+    const audio = new Audio("/sounds/notification.mp3");
 
     const msg = document.getElementById("msg");
     const msgType = document.getElementById("msg-type");
 
     msgType.innerText = alert ? "💥 New Alert!" : "🔔 New Message";
-    msg.innerText = message + "\n\n( Press 9 to close )";
+    msg.innerHTML = message + "<br/><br/><span id='close-text'>( Press 9 to close )</span>";
 
     layer.style.top = "0";
     msgBox.style.transform = "translate(-50%, -50%) scale(1)";

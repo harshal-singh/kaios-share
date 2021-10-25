@@ -15,14 +15,14 @@ if (keyword == "all") {
                     comicHTML += `<a href="comic.html?comic_id=${
                         comic.comic_id
                     }" class="card"><img class="image" src="${placeholderImage}" alt="Spider-Man" data-src="${
-                        /* comic.title_img.replace("https", "http")*/ placeholderTestImage
+                        comic.title_img.replace("https", "http") /* placeholderTestImage*/
                     }" alt="Spider-Man" /><h2 class="title">${comic.comic_title}</h2></a>`;
                 });
                 document.getElementById("search_result").innerHTML = comicHTML;
             } else if (!obj.success) {
                 showMsg(obj.error, true);
             } else {
-                showMsg("Problem with api", true);
+                showMsg("Problem with api", false);
             }
         })
         .then(() => {
@@ -37,6 +37,7 @@ if (keyword == "all") {
             return data.json();
         })
         .then((obj) => {
+            console.log(obj);
             if (obj.success) {
                 let comicHTML = "";
                 const comics = obj.data;
@@ -44,14 +45,14 @@ if (keyword == "all") {
                     comicHTML += `<a href="comic.html?comic_id=${
                         comic.comic_id
                     }" class="card"><img class="image" src="${placeholderImage}" alt="Spider-Man" data-src="${
-                        /* comic.title_img.replace("https", "http")*/ placeholderTestImage
+                        comic.title_img.replace("https", "http") /* placeholderTestImage*/
                     }" alt="Spider-Man" /><h2 class="title">${comic.comic_title}</h2></a>`;
                 });
                 document.getElementById("search_result").innerHTML = comicHTML;
             } else if (!obj.success) {
                 showMsg(obj.error, true);
             } else {
-                showMsg("Problem with api", true);
+                showMsg("Problem with api", false);
             }
         })
         .then(() => {

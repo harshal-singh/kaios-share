@@ -17,15 +17,16 @@ fetch(`http://165.22.223.28/api/manga/read_episode?id=${getParams("episode_id")}
             let page = 1;
             comicPage.src = placeholderPageImage;
 
-            // comicPage.setAttribute("data-src", comicImages[page - 1].img_url.replace("https", "http"));
-            loadPageImage("comic-page", placeholderTestImage);
+            // loadPageImage("comic-page", placeholderTestImage);
+            loadPageImage("comic-page", comicImages[page - 1].img_url.replace("https", "http"));
 
             function next() {
                 page++;
                 comicPage.src = placeholderPageImage;
 
-                // comicPage.setAttribute("data-src", comicImages[page - 1].img_url.replace("https", "http"));
-                loadPageImage("comic-page", placeholderTestImage);
+                // loadPageImage("comic-page", placeholderTestImage);
+                loadPageImage("comic-page", comicImages[page - 1].img_url.replace("https", "http"));
+
                 document.getElementById("current-page").innerText = page;
                 document.getElementById("next").focus();
             }
@@ -33,8 +34,9 @@ fetch(`http://165.22.223.28/api/manga/read_episode?id=${getParams("episode_id")}
                 page--;
                 comicPage.src = placeholderPageImage;
 
-                // comicPage.setAttribute("data-src", comicImages[page - 1].img_url.replace("https", "http"));
-                loadPageImage("comic-page", placeholderTestImage);
+                // loadPageImage("comic-page", placeholderTestImage);
+                loadPageImage("comic-page", comicImages[page - 1].img_url.replace("https", "http"));
+
                 document.getElementById("current-page").innerText = page;
                 document.getElementById("previous").focus();
             }
@@ -57,7 +59,7 @@ fetch(`http://165.22.223.28/api/manga/read_episode?id=${getParams("episode_id")}
         } else if (!obj.success) {
             showMsg(obj.error, true);
         } else {
-            showMsg("Problem with api", true);
+            showMsg("Problem with api", false);
         }
     })
     .then(() => {

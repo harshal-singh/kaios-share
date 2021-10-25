@@ -14,7 +14,7 @@ fetch(`http://165.22.223.28/api/manga/read_comic?id=${getParams("comic_id")}`)
                 episodeHTML += `<a href="read.html?comic_name=${comic.comic_title}&episode_id=${
                     episode.episode_id
                 }" class="card"><img class="image" src="${placeholderImage}" alt="Spider-Man" data-src="${
-                    /* comic.title_img.replace("https", "http")*/ placeholderTestImage
+                    comic.title_img.replace("https", "http") /* placeholderTestImage*/
                 }" alt="Spider-Man" /><h2 class="title">${episode.episode_number}</h2></a>`;
             });
 
@@ -23,7 +23,7 @@ fetch(`http://165.22.223.28/api/manga/read_comic?id=${getParams("comic_id")}`)
         } else if (!obj.success) {
             showMsg(obj.error, true);
         } else {
-            showMsg("Problem with api", true);
+            showMsg("Problem with api", false);
         }
     })
     .then(() => {
