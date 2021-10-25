@@ -1,12 +1,12 @@
 @font-face {
     font-family: "Varela Round";
-    src: url(fonts/VarelaRound-Regular.ttf) format("truetype");
+    src: url(../fonts/VarelaRound-Regular.ttf) format("truetype");
     font-display: swap;
 }
 
 @font-face {
     font-family: "Fredericka the Great";
-    src: url(fonts/FrederickatheGreat-Regular.ttf) format("truetype");
+    src: url(../fonts/FrederickatheGreat-Regular.ttf) format("truetype");
     font-display: swap;
 }
 
