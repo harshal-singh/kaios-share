@@ -9,7 +9,7 @@ shareBtn.onclick = () => {
 };
 
 document.addEventListener("keypress", (e) => {
-    if (e.key == "Enter") {
+    if (e.key == "0") {
         share(imageUrl);
     }
 });
