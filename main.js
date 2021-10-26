@@ -8,7 +8,7 @@ shareBtn.onclick = () => {
     share(imageUrl);
 };
 
-document.addEventListener("keydown", (e) => {
+document.addEventListener("keypress", (e) => {
     if (e.key == "Enter") {
         share(imageUrl);
     }
@@ -16,15 +16,7 @@ document.addEventListener("keydown", (e) => {
 
 // share image
 function share(url) {
-    fetch("https://kaiosapi.quadbtech.com/api/memer/download", {
-        method: "POST",
-        headers: {
-            "Content-type": "application/json; charset=UTF-8",
-        },
-        body: JSON.stringify({
-            urls: url,
-        }),
-    })
+    fetch("https://images.dog.ceo/breeds/cotondetulear/IMAG1063.jpg")
         .then((data) => {
             return data.blob();
         })
@@ -45,10 +37,10 @@ function share(url) {
 
             // if error in sharing image
             sharing.onerror = function () {
-                msg.innerText = "SHARING \n\n" + this.error;
+                msg.innerText = "SHARING \n" + this.error;
             };
         })
         .catch((err) => {
-            msg.innerText = "FETCH ERROR \n\n" + err;
+            msg.innerText = "FETCH ERROR \n" + err;
         });
 }
